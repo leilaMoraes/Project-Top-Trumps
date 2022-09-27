@@ -23,7 +23,7 @@ class Form extends Component {
             data-testid="name-input"
             id="card-name"
             type="text"
-            name="card-name"
+            name="cardName"
             value={ cardName }
             onChange={ onInputChange }
           />
@@ -34,7 +34,7 @@ class Form extends Component {
             data-testid="description-input"
             id="card-description"
             type="textarea"
-            name="card-description"
+            name="cardDescription"
             value={ cardDescription }
             onChange={ onInputChange }
           />
@@ -45,7 +45,7 @@ class Form extends Component {
             data-testid="attr1-input"
             id="card-attr1"
             type="number"
-            name="card-attr1"
+            name="cardAttr1"
             value={ cardAttr1 }
             onChange={ onInputChange }
           />
@@ -56,7 +56,7 @@ class Form extends Component {
             data-testid="attr2-input"
             id="card-attr2"
             type="number"
-            name="card-attr2"
+            name="cardAttr2"
             value={ cardAttr2 }
             onChange={ onInputChange }
           />
@@ -67,7 +67,7 @@ class Form extends Component {
             data-testid="attr3-input"
             id="card-attr3"
             type="number"
-            name="card-attr3"
+            name="cardAttr3"
             value={ cardAttr3 }
             onChange={ onInputChange }
           />
@@ -78,7 +78,7 @@ class Form extends Component {
             data-testid="image-input"
             id="card-image"
             type="text"
-            name="card-image"
+            name="cardImage"
             value={ cardImage }
             onChange={ onInputChange }
           />
@@ -88,13 +88,13 @@ class Form extends Component {
           <select
             data-testid="rare-input"
             id="card-rarity"
-            name="card-rarity"
+            name="cardRare"
             value={ cardRare }
             onChange={ onInputChange }
           >
-            <option value="normal">Normal</option>
-            <option value="raro">Raro</option>
-            <option value="muito raro">Muito Raro</option>
+            <option value="normal">normal</option>
+            <option value="raro">raro</option>
+            <option value="muito raro">muito Raro</option>
           </select>
         </label>
         <label htmlFor="card-trunfo">
@@ -102,7 +102,7 @@ class Form extends Component {
             data-testid="trunfo-input"
             id="card-trunfo"
             type="checkbox"
-            name="card-trunfo"
+            name="cardTrunfo"
             checked={ cardTrunfo }
             onChange={ onInputChange }
           />
