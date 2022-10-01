@@ -73,6 +73,12 @@ class App extends React.Component {
     return savedCard.some((card) => card.cardTrunfo);
   };
 
+  deleteCard = ({ target }) => {
+    const { savedCard } = this.state;
+    const newList = savedCard.filter((card) => card.cardName !== target.id);
+    this.setState({ savedCard: newList });
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo,
@@ -109,17 +115,27 @@ class App extends React.Component {
         <div>
           {
             savedCard.map((card) => (
-              <Card
-                key={ card.cardName }
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
+              <>
+                <Card
+                  key={ card.cardName }
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  id={ card.cardName }
+                  data-testid="delete-button"
+                  type="button"
+                  onClick={ this.deleteCard }
+                >
+                  Excluir
+                </button>
+              </>
             ))
           }
         </div>
