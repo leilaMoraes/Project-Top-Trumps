@@ -44,7 +44,8 @@ class App extends React.Component {
 
   savingCards = () => {
     const { cardName, cardDescription,
-      cardImage, cardAttr1, cardAttr2, cardAttr3, cardRare, cardTrunfo } = this.state;
+      cardImage, cardAttr1, cardAttr2, cardAttr3, cardRare,
+      cardTrunfo } = this.state;
     const newCard = {
       cardName,
       cardDescription,
@@ -67,9 +68,14 @@ class App extends React.Component {
     }));
   };
 
+  checkTrunfo = () => {
+    const { savedCard } = this.state;
+    return savedCard.some((card) => card.cardTrunfo);
+  };
+
   render() {
-    const { cardName, cardDescription, cardAttr1,
-      cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
+    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo,
       isSaveButtonDisabled } = this.state;
     return (
       <div>
@@ -82,6 +88,7 @@ class App extends React.Component {
           cardAttr3={ cardAttr3 }
           cardImage={ cardImage }
           cardRare={ cardRare }
+          hasTrunfo={ this.checkTrunfo() }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleChange }
           isSaveButtonDisabled={ isSaveButtonDisabled }
