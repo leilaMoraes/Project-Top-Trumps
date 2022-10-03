@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Filters from './components/Filters';
 
 class App extends React.Component {
   constructor() {
@@ -16,6 +17,9 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       savedCard: [],
+      filterName: '',
+      filterRare: 'todas',
+      filterTrunfo: false,
     };
   }
 
@@ -79,10 +83,28 @@ class App extends React.Component {
     this.setState({ savedCard: newList });
   };
 
+  handleFilter = () => {
+    const { savedCard, filterName, filterRare, filterTrunfo } = this.state;
+    if (filterTrunfo) {
+      return savedCard.filter((card) => card.cardTrunfo);
+    }
+    if (filterName) {
+      return savedCard.filter((card) => card.cardName.toLowerCase()
+        .includes(filterName.toLowerCase()));
+    }
+    if (filterRare === 'todas') {
+      return savedCard;
+    }
+    if (filterRare !== 'todas') {
+      return savedCard.filter((card) => card.cardRare === filterRare);
+    }
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled, savedCard } = this.state;
+      isSaveButtonDisabled, filterName, filterRare, filterTrunfo } = this.state;
+    const filteredCards = this.handleFilter();
     return (
       <>
         <div>
@@ -112,9 +134,15 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
+        <Filters
+          filterName={ filterName }
+          onFilterChange={ this.handleChange }
+          filterRare={ filterRare }
+          filterTrunfo={ filterTrunfo }
+        />
         <div>
           {
-            savedCard.map((card) => (
+            filteredCards.map((card) => (
               <>
                 <Card
                   key={ card.cardName }
